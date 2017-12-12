@@ -16,6 +16,9 @@
 		7170B4FC1FDF7D0D008F2390 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170B4FB1FDF7D0D008F2390 /* main.m */; };
 		7170B5061FDF7D0D008F2390 /* DropViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170B5051FDF7D0D008F2390 /* DropViewDemoTests.m */; };
 		7170B5111FDF7D0E008F2390 /* DropViewDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170B5101FDF7D0E008F2390 /* DropViewDemoUITests.m */; };
+		7170B5241FDF7D53008F2390 /* PopupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170B51F1FDF7D53008F2390 /* PopupTableViewCell.m */; };
+		7170B5251FDF7D53008F2390 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7170B5201FDF7D53008F2390 /* PopupView.m */; };
+		7170B5261FDF7D53008F2390 /* PopupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7170B5221FDF7D53008F2390 /* PopupTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,11 @@
 		7170B50C1FDF7D0D008F2390 /* DropViewDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DropViewDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7170B5101FDF7D0E008F2390 /* DropViewDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropViewDemoUITests.m; sourceTree = "<group>"; };
 		7170B5121FDF7D0E008F2390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7170B51F1FDF7D53008F2390 /* PopupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupTableViewCell.m; sourceTree = "<group>"; };
+		7170B5201FDF7D53008F2390 /* PopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupView.m; sourceTree = "<group>"; };
+		7170B5211FDF7D53008F2390 /* PopupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupTableViewCell.h; sourceTree = "<group>"; };
+		7170B5221FDF7D53008F2390 /* PopupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopupTableViewCell.xib; sourceTree = "<group>"; };
+		7170B5231FDF7D53008F2390 /* PopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +111,7 @@
 		7170B4E81FDF7D0D008F2390 /* DropViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				7170B51E1FDF7D53008F2390 /* DropChoiceView */,
 				7170B4E91FDF7D0D008F2390 /* AppDelegate.h */,
 				7170B4EA1FDF7D0D008F2390 /* AppDelegate.m */,
 				7170B4EC1FDF7D0D008F2390 /* ViewController.h */,
@@ -133,6 +142,18 @@
 				7170B5121FDF7D0E008F2390 /* Info.plist */,
 			);
 			path = DropViewDemoUITests;
+			sourceTree = "<group>";
+		};
+		7170B51E1FDF7D53008F2390 /* DropChoiceView */ = {
+			isa = PBXGroup;
+			children = (
+				7170B51F1FDF7D53008F2390 /* PopupTableViewCell.m */,
+				7170B5201FDF7D53008F2390 /* PopupView.m */,
+				7170B5211FDF7D53008F2390 /* PopupTableViewCell.h */,
+				7170B5221FDF7D53008F2390 /* PopupTableViewCell.xib */,
+				7170B5231FDF7D53008F2390 /* PopupView.h */,
+			);
+			path = DropChoiceView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +264,7 @@
 			files = (
 				7170B4F91FDF7D0D008F2390 /* LaunchScreen.storyboard in Resources */,
 				7170B4F61FDF7D0D008F2390 /* Assets.xcassets in Resources */,
+				7170B5261FDF7D53008F2390 /* PopupTableViewCell.xib in Resources */,
 				7170B4F11FDF7D0D008F2390 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,6 +293,8 @@
 				7170B4F41FDF7D0D008F2390 /* DropViewDemo.xcdatamodeld in Sources */,
 				7170B4EE1FDF7D0D008F2390 /* ViewController.m in Sources */,
 				7170B4FC1FDF7D0D008F2390 /* main.m in Sources */,
+				7170B5251FDF7D53008F2390 /* PopupView.m in Sources */,
+				7170B5241FDF7D53008F2390 /* PopupTableViewCell.m in Sources */,
 				7170B4EB1FDF7D0D008F2390 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

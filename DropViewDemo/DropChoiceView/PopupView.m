@@ -89,7 +89,7 @@ BOOL isShow = NO;
 + (UIImage *)drawTriangle {
     
     UIGraphicsBeginImageContextWithOptions( CGSizeMake(2 * Trianglewidth, 2 * Trianglewidth), NO, 0);
-
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     //绘制三角形
@@ -102,7 +102,7 @@ BOOL isShow = NO;
     [[UIColor blackColor] setFill];
     
     CGContextFillPath(context);
-
+    
     //获取生成的图片
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     return image;
@@ -110,9 +110,9 @@ BOOL isShow = NO;
 
 
 + (void)addCellWithIcon:(UIImage *)icon text:(NSString *)text action:(void (^)())action {
-//    if (!icon) {
-//        return;
-//    }
+    //    if (!icon) {
+    //        return;
+    //    }
     
     popupView = [PopupView shareInstance];
     popupView.rows += 1;
@@ -121,23 +121,12 @@ BOOL isShow = NO;
     [popupView.actionBlocks addObject: (action ? [action copy] : [NSNull null])];
 }
 
-+ (void)popupViewInPosition:(PopViewShowPosition)position {
++ (void)popupViewInPosition:(HGGPopViewShowPosition)position {
     
     isShow = !isShow;
     
-    if (ShowRight == position) {
-        
-//        显示位置是在右边
-        isShow == YES ? [PopupView showWithPosition:position] : [PopupView hide];
-
-        
-    }else if (ShowLeft == position){
-        
-//        显示位置在左边
-        isShow == YES ? [PopupView showWithPosition:position] : [PopupView hide];
-
-        
-    }
+    isShow == YES ? [PopupView showWithPosition:position] : [PopupView hide];
+    
     
     //发送信号
     NSDictionary *dic;
@@ -145,13 +134,74 @@ BOOL isShow = NO;
         dic = @{@"status":@"NO"};
     }else{
         dic = @{@"status":@"YES"};
-
+        
     }
     [[NSNotificationCenter defaultCenter]postNotificationName:@"changeStatus" object:nil userInfo:dic];
 }
++ (void)popupViewInButton:(UIButton *)button {
+    
+    
+    isShow = !isShow;
+    
+    isShow == YES ? [PopupView showWithButton:button] : [PopupView hide];
+    
+    
+    //发送信号
+    NSDictionary *dic;
+    if (isShow) {
+        dic = @{@"status":@"NO"};
+    }else{
+        dic = @{@"status":@"YES"};
+        
+    }
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"changeStatus" object:nil userInfo:dic];
+    
+}
 
-
-+ (void)showWithPosition:(PopViewShowPosition)position {
++(void)showWithButton:(UIButton *)button
+{
+    UIWindow *window = [[[UIApplication sharedApplication] windows] firstObject];
+    
+    if (popupView == nil) {
+        popupView = [PopupView shareInstance];
+    }
+    
+    popupView.bgView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:popupView action:@selector(clickBgViewToHide)];
+    [popupView.bgView addGestureRecognizer:tap];
+    [window addSubview:popupView.bgView];
+//    按钮右偏
+    CGFloat offsetX = 0;
+    if (button.frame.size.width/2 + button.frame.origin.x  > [UIScreen mainScreen].bounds.size.width/2) {
+        
+        offsetX = -10;
+    }else if (button.frame.size.width/2 + button.frame.origin.x  < [UIScreen mainScreen].bounds.size.width/2)
+    {
+        offsetX = 10;
+    }else{
+        offsetX = 0;
+    }
+    
+    
+    popupView.Triangle.frame = CGRectMake(button.frame.origin.x + (button.frame.size.width/2) + offsetX, button.frame.origin.y + button.frame.size.height - 4, (Trianglewidth + 2) * 2, (Trianglewidth + 2) * 2);
+    
+    popupView.frame = CGRectMake(popupView.Triangle.frame.origin.x - popupViewWidth/2 + offsetX, CGRectGetMaxY(popupView.Triangle.frame), popupViewWidth, rowHeight * popupView.rows);
+    
+    
+    
+    
+    popupView.layer.cornerRadius = 5;
+    popupView.layer.masksToBounds = YES;
+    [window addSubview:popupView.Triangle];
+    
+    
+    [popupView addSubview: popupView.tableView];
+    
+    [window addSubview: popupView];
+    
+    
+}
++ (void)showWithPosition:(HGGPopViewShowPosition)position {
     
     UIWindow *window = [[[UIApplication sharedApplication] windows] firstObject];
     
@@ -167,10 +217,10 @@ BOOL isShow = NO;
     
     if (ShowRight == position) {
         
-//
+        //
         popupView.Triangle.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 43, 60, (Trianglewidth + 2) * 2, Trianglewidth * 2);
         popupView.frame = CGRectMake(popupView.Triangle.frame.origin.x - popupViewWidth/2 - 10, CGRectGetMaxY(popupView.Triangle.frame), popupViewWidth, rowHeight * popupView.rows);
-
+        
         
     }else if (ShowLeft == position){
         
@@ -179,8 +229,6 @@ BOOL isShow = NO;
         popupView.frame = CGRectMake(20, CGRectGetMaxY(popupView.Triangle.frame), popupViewWidth, rowHeight * popupView.rows);
         
         
-    }else{
-        NSLog(@"方向待定");
     }
     
     

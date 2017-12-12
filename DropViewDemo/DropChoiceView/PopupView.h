@@ -8,8 +8,8 @@
 typedef enum {
     ShowLeft = 0,
     ShowRight = 1,
-    ShowOtherPosition
-}PopViewShowPosition;
+    FreeDomPosition
+}HGGPopViewShowPosition;
 
 
 #import <UIKit/UIKit.h>
@@ -20,5 +20,6 @@ typedef enum {
 
 
 + (void)addCellWithIcon:(UIImage *)icon text:(NSString *)text action: (void (^) ())action;
-+ (void)popupViewInPosition:(PopViewShowPosition)position;
++ (void)popupViewInPosition:(HGGPopViewShowPosition)position;
++ (void)popupViewInButton:(UIButton *)button;
 @end
